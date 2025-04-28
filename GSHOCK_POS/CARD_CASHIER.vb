@@ -109,6 +109,11 @@
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Application.Exit()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        PAYMENT.Show()
+        Me.Hide()
     End Sub
 End Class

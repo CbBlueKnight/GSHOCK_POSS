@@ -25,6 +25,7 @@ Partial Class ADMIN_LOGIN
         Dim Label1 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ADMIN_LOGIN))
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.btnClose = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -32,7 +33,6 @@ Partial Class ADMIN_LOGIN
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.btnClose = New System.Windows.Forms.Button()
         Label1 = New System.Windows.Forms.Label()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,6 +61,19 @@ Partial Class ADMIN_LOGIN
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(1386, 47)
         Me.Panel3.TabIndex = 34
+        '
+        'btnClose
+        '
+        Me.btnClose.BackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClose.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClose.ForeColor = System.Drawing.Color.Red
+        Me.btnClose.Location = New System.Drawing.Point(1314, 12)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(60, 24)
+        Me.btnClose.TabIndex = 35
+        Me.btnClose.Text = "X"
+        Me.btnClose.UseVisualStyleBackColor = False
         '
         'PictureBox1
         '
@@ -146,19 +159,6 @@ Partial Class ADMIN_LOGIN
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(371, 26)
         Me.TextBox1.TabIndex = 27
-        '
-        'btnClose
-        '
-        Me.btnClose.BackColor = System.Drawing.Color.Transparent
-        Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClose.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.ForeColor = System.Drawing.Color.Red
-        Me.btnClose.Location = New System.Drawing.Point(1314, 12)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(60, 24)
-        Me.btnClose.TabIndex = 35
-        Me.btnClose.Text = "X"
-        Me.btnClose.UseVisualStyleBackColor = False
         '
         'ADMIN_LOGIN
         '

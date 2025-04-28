@@ -3,7 +3,7 @@
 Public Class PRODUCT_LOOK_UP
 
     ' Connection String
-    Private con As New SqlConnection("Data Source=192.168.8.40,1433;Initial Catalog=gshock;User ID=sa;Password=12345;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+    Private con As New SqlConnection("Data Source=DESKTOP-UD7BN0F;Initial Catalog=gshock;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
     Private total As Decimal = 0
 
     ' Store matched products
@@ -27,7 +27,7 @@ Public Class PRODUCT_LOOK_UP
     ' Load Inventory and Cart
     Private Sub LoadData()
         Try
-            Using con As New SqlConnection("Data Source=192.168.8.40,1433;Initial Catalog=gshock;User ID=sa;Password=12345;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+            Using con As New SqlConnection("Data Source=DESKTOP-UD7BN0F;Initial Catalog=gshock;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
                 con.Open()
 
                 ' Load inventory data
@@ -66,7 +66,7 @@ Public Class PRODUCT_LOOK_UP
         If quantity <= 0 Then Exit Sub
 
         Try
-            Using con As New SqlConnection("Data Source=192.168.8.40,1433;Initial Catalog=gshock;User ID=sa;Password=12345;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+            Using con As New SqlConnection("Data Source=DESKTOP-UD7BN0F;Initial Catalog=gshock;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
                 con.Open()
 
                 ' Retrieve product details from inventory
@@ -90,7 +90,6 @@ Public Class PRODUCT_LOOK_UP
                             UpdateCart(con, productId, productName, series, quantity, totalPrice)
 
                             ' Refresh UI and reset input fields
-                            TextBox2.Text = total.ToString("F2")
                             ClearProductFields()
                             LoadData()
                         Else
@@ -169,55 +168,37 @@ Public Class PRODUCT_LOOK_UP
         TextBox1.Clear()
     End Sub
 
-    ' Process Payment
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim payment As Decimal
-        If Decimal.TryParse(TextBox3.Text, payment) Then
-            If payment < 0 Then
-                MessageBox.Show("Payment cannot be negative!")
-            ElseIf payment >= total Then
-                TextBox4.Text = (payment - total).ToString("F2")
-                MessageBox.Show("Payment successful! Change: " & TextBox4.Text)
-                LoadData()
-            Else
-                MessageBox.Show("Insufficient payment!")
-            End If
-        Else
-            MessageBox.Show("Invalid payment amount!")
-        End If
-    End Sub
-
     ' Start New Transaction
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        StartNewTransaction()
-    End Sub
+        Dim result As DialogResult = MessageBox.Show("Start a new transaction? This will clear the current cart.", "Confirm New Transaction", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-    ' Start New Transaction Logic
-    Private Sub StartNewTransaction()
-        total = 0
-        TextBox1.Text = "1"
-        TextBox2.Clear()
-        TextBox3.Clear()
-        TextBox4.Clear()
+        If result = DialogResult.Yes Then
+            Try
+                Using con As New SqlConnection("Data Source=DESKTOP-UD7BN0F;Initial Catalog=gshock;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+                    con.Open()
 
-        Try
-            Using con As New SqlConnection("Data Source=192.168.8.40,1433;Initial Catalog=gshock;User ID=sa;Password=12345;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
-                con.Open()
-                Dim cmd As New SqlCommand("DELETE FROM gshock.dbo.lookup", con)
-                cmd.ExecuteNonQuery()
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("Error clearing cart: " & ex.Message)
-        End Try
+                    ' Clear the cart
+                    Using cmd As New SqlCommand("DELETE FROM gshock.dbo.lookup", con)
+                        cmd.ExecuteNonQuery()
+                    End Using
 
-        MessageBox.Show("New transaction started.")
-        LoadData()
+                    ' Optionally, reset any other variables
+                    total = 0
+                    ClearProductFields()
+                    LoadData()
+
+                    MessageBox.Show("New transaction started. Cart is now empty.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error starting new transaction: " & ex.Message)
+            End Try
+        End If
     End Sub
 
     ' Clear Cart when Form Closes
     Private Sub PRODUCT_LOOK_UP_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
-            Using con As New SqlConnection("Data Source=192.168.8.40,1433;Initial Catalog=gshock;User ID=sa;Password=12345;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+            Using con As New SqlConnection("Data Source=DESKTOP-UD7BN0F;Initial Catalog=gshock;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
                 con.Open()
                 Dim cmd As New SqlCommand("DELETE FROM gshock.dbo.lookup", con)
                 cmd.ExecuteNonQuery()
@@ -228,7 +209,7 @@ Public Class PRODUCT_LOOK_UP
     End Sub
 
     ' Numeric input only for certain textboxes
-    Private Sub TextBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress, TextBox2.KeyPress, TextBox3.KeyPress, TextBox4.KeyPress
+    Private Sub TextBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress
         If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
             e.Handled = True
         End If
@@ -246,11 +227,117 @@ Public Class PRODUCT_LOOK_UP
         End If
     End Sub
 
-    Private Sub MP_Click(sender As Object, e As EventArgs)
-
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        PAYMENT.Show()
+        Me.Hide()
     End Sub
 
+    Private Sub TextBox9_TextChanged(sender As Object, e As EventArgs) Handles TextBox9.TextChanged
+        If String.IsNullOrWhiteSpace(TextBox9.Text) Then
+            ClearProductFields()
+            Exit Sub
+        End If
+
+        Try
+            Using con As New SqlConnection("Data Source=DESKTOP-UD7BN0F;Initial Catalog=gshock;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+                con.Open()
+
+                ' First, search for exact ID
+                Dim exactIdQuery As String = "
+                SELECT TOP 1 id, productname, series, price, quantity 
+                FROM gshock.dbo.products 
+                WHERE id = @searchText
+            "
+                Using cmd As New SqlCommand(exactIdQuery, con)
+                    cmd.Parameters.AddWithValue("@searchText", TextBox9.Text.Trim())
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            FillProductFields(reader)
+                            Return ' Found exact match, exit
+                        End If
+                    End Using
+                End Using
+
+                ' If no exact match, search partial ID or product name
+                Dim partialQuery As String = "
+                SELECT TOP 1 id, productname, series, price, quantity 
+                FROM gshock.dbo.products 
+                WHERE id LIKE @searchTextLike 
+                   OR productname LIKE @searchTextName
+            "
+                Using cmd As New SqlCommand(partialQuery, con)
+                    cmd.Parameters.AddWithValue("@searchTextLike", TextBox9.Text.Trim() + "%")
+                    cmd.Parameters.AddWithValue("@searchTextName", "%" + TextBox9.Text.Trim() + "%")
+
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            FillProductFields(reader)
+                        Else
+                            ClearProductFields()
+                        End If
+                    End Using
+                End Using
+
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error searching products: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub FillProductFields(reader As SqlDataReader)
+        TextBox5.Text = reader("id").ToString()
+        TextBox6.Text = reader("productname").ToString()
+        TextBox7.Text = reader("series").ToString()
+        TextBox8.Text = reader("price").ToString()
+        TextBox1.Text = reader("quantity").ToString()
+    End Sub
+
+    ' Event: When user clicks a product in the Cart (DataGridView2)
+    Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
+        If e.RowIndex >= 0 Then
+            Dim selectedRow As DataGridViewRow = DataGridView2.Rows(e.RowIndex)
+
+            Dim productId As String = selectedRow.Cells("id").Value.ToString()
+            Dim productQuantity As Integer = Convert.ToInt32(selectedRow.Cells("quantity").Value)
+
+            ' Confirm delete
+            Dim result As DialogResult = MessageBox.Show($"Remove {productQuantity} pcs of {productId} from cart?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If result = DialogResult.Yes Then
+                Try
+                    Using con As New SqlConnection("Data Source=DESKTOP-UD7BN0F;Initial Catalog=gshock;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+                        con.Open()
+
+                        ' 1. Delete from cart
+                        Using deleteCmd As New SqlCommand("DELETE FROM gshock.dbo.lookup WHERE id = @id", con)
+                            deleteCmd.Parameters.AddWithValue("@id", productId)
+                            deleteCmd.ExecuteNonQuery()
+                        End Using
+
+                        ' 2. Add back the quantity to products table
+                        Using updateCmd As New SqlCommand("UPDATE gshock.dbo.products SET quantity = quantity + @quantity WHERE id = @id", con)
+                            updateCmd.Parameters.AddWithValue("@quantity", productQuantity)
+                            updateCmd.Parameters.AddWithValue("@id", productId)
+                            updateCmd.ExecuteNonQuery()
+                        End Using
+
+                        ' Refresh DataGrids
+                        LoadData()
+                        ClearProductFields()
+
+                        MessageBox.Show("Item successfully removed from cart and returned to inventory.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show("Error while removing product: " & ex.Message)
+                End Try
+            End If
+        End If
+    End Sub
+
+
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Application.Exit()
     End Sub
 End Class

@@ -14,11 +14,7 @@
         Me.Hide()
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Me.Close()
+        Application.Exit()
     End Sub
 End Class

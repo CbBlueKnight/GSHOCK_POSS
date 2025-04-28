@@ -144,4 +144,8 @@ Public Class LOGIN
     Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
         ' The TextBox is already masked with dots through the PasswordChar property
     End Sub
+
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Application.Exit()
+    End Sub
 End Class

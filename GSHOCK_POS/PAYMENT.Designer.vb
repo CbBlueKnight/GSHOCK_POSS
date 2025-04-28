@@ -30,8 +30,9 @@ Partial Class PAYMENT
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.MP = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -87,9 +88,9 @@ Partial Class PAYMENT
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel3.Controls.Add(Me.Button6)
         Me.Panel3.Controls.Add(Me.btnClose)
         Me.Panel3.Controls.Add(Me.PictureBox1)
-        Me.Panel3.Controls.Add(Me.MP)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
@@ -122,19 +123,6 @@ Partial Class PAYMENT
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
-        'MP
-        '
-        Me.MP.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.MP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.MP.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MP.ForeColor = System.Drawing.Color.Red
-        Me.MP.Location = New System.Drawing.Point(1128, 12)
-        Me.MP.Name = "MP"
-        Me.MP.Size = New System.Drawing.Size(126, 24)
-        Me.MP.TabIndex = 0
-        Me.MP.Text = "MAIN PAGE"
-        Me.MP.UseVisualStyleBackColor = False
-        '
         'Button4
         '
         Me.Button4.BackColor = System.Drawing.SystemColors.AppWorkspace
@@ -147,6 +135,29 @@ Partial Class PAYMENT
         Me.Button4.Text = "NEXT"
         Me.Button4.UseVisualStyleBackColor = False
         '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.Button5.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button5.Location = New System.Drawing.Point(34, 698)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(152, 55)
+        Me.Button5.TabIndex = 28
+        Me.Button5.Text = "RETURN"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'Button6
+        '
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.ForeColor = System.Drawing.Color.Red
+        Me.Button6.Location = New System.Drawing.Point(1170, 13)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(75, 23)
+        Me.Button6.TabIndex = 5
+        Me.Button6.Text = "RETURN"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
         'PAYMENT
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -154,6 +165,7 @@ Partial Class PAYMENT
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1386, 788)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Label1)
@@ -178,6 +190,7 @@ Partial Class PAYMENT
     Friend WithEvents Panel3 As Panel
     Friend WithEvents btnClose As Button
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents MP As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
 End Class

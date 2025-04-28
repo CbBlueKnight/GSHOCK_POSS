@@ -36,6 +36,7 @@ Partial Class CARD_CASHIER
         Me.btnClose = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -136,6 +137,7 @@ Partial Class CARD_CASHIER
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel3.Controls.Add(Me.Button1)
         Me.Panel3.Controls.Add(Me.btnClose)
         Me.Panel3.Controls.Add(Me.PictureBox1)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
@@ -182,6 +184,17 @@ Partial Class CARD_CASHIER
         Me.Label5.TabIndex = 6
         Me.Label5.Text = "CASH PAYMENT"
         '
+        'Button1
+        '
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.Red
+        Me.Button1.Location = New System.Drawing.Point(1168, 12)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 16
+        Me.Button1.Text = "RETURN"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'CARD_CASHIER
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -223,4 +236,5 @@ Partial Class CARD_CASHIER
     Friend WithEvents btnClose As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label5 As Label
+    Friend WithEvents Button1 As Button
 End Class

@@ -32,6 +32,7 @@ Partial Class LOGIN
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.btnClose = New System.Windows.Forms.Button()
         Label1 = New System.Windows.Forms.Label()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +56,7 @@ Partial Class LOGIN
         Me.TextBox1.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.TextBox1.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(334, 278)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(371, 26)
         Me.TextBox1.TabIndex = 3
@@ -79,7 +80,7 @@ Partial Class LOGIN
         Me.Button1.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Button1.Location = New System.Drawing.Point(627, 432)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(2)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(78, 28)
         Me.Button1.TabIndex = 7
@@ -117,7 +118,7 @@ Partial Class LOGIN
         Me.TextBox2.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.TextBox2.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.Location = New System.Drawing.Point(334, 381)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(371, 26)
         Me.TextBox2.TabIndex = 11
@@ -125,6 +126,7 @@ Partial Class LOGIN
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel3.Controls.Add(Me.btnClose)
         Me.Panel3.Controls.Add(Me.PictureBox1)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
@@ -145,6 +147,19 @@ Partial Class LOGIN
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
+        'btnClose
+        '
+        Me.btnClose.BackColor = System.Drawing.Color.Transparent
+        Me.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnClose.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClose.ForeColor = System.Drawing.Color.Red
+        Me.btnClose.Location = New System.Drawing.Point(939, 12)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(60, 24)
+        Me.btnClose.TabIndex = 27
+        Me.btnClose.Text = "X"
+        Me.btnClose.UseVisualStyleBackColor = False
+        '
         'LOGIN
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -161,7 +176,7 @@ Partial Class LOGIN
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "LOGIN"
         Me.Text = "Form2"
         Me.Panel3.ResumeLayout(False)
@@ -178,4 +193,5 @@ Partial Class LOGIN
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents btnClose As Button
 End Class

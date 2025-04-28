@@ -22,4 +22,18 @@
         CARD_CASHIER.Show()
         Me.Hide()
     End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        PRODUCT_LOOK_UP.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        PRODUCT_LOOK_UP.Show()
+        Me.Hide()
+    End Sub
 End Class
